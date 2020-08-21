@@ -1,0 +1,17 @@
+<p>Tous les visiteurs</p>
+<% @users.each do |u| %>
+
+    <%=u.email%>
+
+    <!-- <%= link_to  "VALIDER", admin_path(u.id), method: :put  %> <br> -->
+
+    <%if u.is_admin == false  %>
+
+        <a href="/admin/users/<%=u.id%>" data-method="put" class="badge badge-info">VALIDER</a><br>
+
+    <%else%>
+
+        <span class="badge badge-success">VALIDE</span><br>
+        
+    <%end%> 
+<%end%>

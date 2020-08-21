@@ -1,0 +1,35 @@
+<h1><center>Commentaires</center></h1>
+
+
+<div>
+    <div>
+    <%@toutmessage.each do |m|%><br>
+        Titre : <%=m.title%><br>
+                <%=m.content%><br>
+
+            <!-- madea io bouton io like iray io-->                
+                <!--<%=m.content%></br> <%= button_to 'LIKE', message_likes_path(m.id), method: :post %> -->
+
+
+                <%= m.likes.count %> 
+                   
+            <!--manisa ny nombre de like iz; ra iotran 1 dia asina soratra oe likes-->
+            <%= (m.likes.count) > 1 ? 'likes' : 'like'%><br>
+                    
+            <!-- afaka soloina an'ito koa io find_by (...) io-->              
+                <!--  { |like| like.user_id == current_user.id} -->
+            <% pre_like = m.likes.find_by(user_id: current_user.id) %>   
+
+            <% if pre_like %>
+
+                    <%= button_to 'Unlike', message_like_path(m.id, pre_like), method: :delete %>
+
+                <% else %>
+
+                    <%= button_to 'Like', message_likes_path(m.id), method: :post %>
+            <% end %>
+
+        <%=m.user.name%>, <%=m.created_at%><br>
+    <%end%> 
+    </div>  
+</div>

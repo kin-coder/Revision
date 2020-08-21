@@ -1,0 +1,36 @@
+
+
+<%if current_user%>
+
+      <%if current_user.is_admin == true%>
+
+         <h1>PAGE INDEX</h1>
+
+         <p>Les connecteurs:</p>
+            <%@mail.each do |le_mail|%>
+
+               <%=le_mail.email%> <%= link_to  "VOIR", index_path(le_mail.id) %><br>
+
+            <%end%>   
+      <%else%> 
+
+         <h1>PAGE INDEX</h1>
+
+         <p>Les connecteurs:</p>
+         <%@mail.each do |le_mail|%>
+
+            <%=le_mail.email%> <%= link_to  "VOIR", index_path(le_mail.id) %><br>
+
+         <%end%>
+      <%end%> 
+<%else%>      
+      <h3><center> Veuillez-vous connecter pour entrer. 🤗</center></h3>
+<%end%><br>
+
+<%if @unic%>
+
+  Le Mail de  <%=@unic.name%> <%=@unic.firstname%> est : <%=@unic.email%>
+
+   
+
+ <%end%>  

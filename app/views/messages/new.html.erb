@@ -1,0 +1,29 @@
+<h1>Votre Message</h1>
+
+
+<%= form_for @new_message, url: {action: "create"}, remote: true do |f| %>
+
+    <%= f.hidden_field :user_id, value: "#{current_user.id}"%>
+    <div class="form_group">
+
+        <label>Titre:</label><br>
+
+            <%= f.text_field :title%> <br><br>
+
+        <label>Message:</label><br>
+            
+
+            <%= f.text_area :content %>
+    </div>
+
+
+     <%=f.submit "Envoyer", class: 'btn btn-success'%>
+
+<% end %>
+
+
+
+    
+
+
+  

@@ -1,0 +1,23 @@
+<h1>Messages#edit</h1>
+<p>Find me in app/views/messages/edit.html.erb</p>
+
+
+<%= form_for @edit_message, url: {action: "update"}, remote: true do |f| %>
+
+    <%= f.hidden_field :user_id, value: "#{current_user.id}"%>
+    <div class="form_group">
+
+        <label>Titre:</label><br>
+
+            <%= f.text_field :title%> <br><br>
+
+        <label>Message:</label><br>
+            
+
+            <%= f.text_area :content%>
+    </div>
+
+
+     <%=f.submit "Editer", class: 'btn btn-success'%>
+
+<% end %>

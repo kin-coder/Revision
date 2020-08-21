@@ -1,0 +1,52 @@
+<h1>PAGE HOME</h1>
+
+    <%if params[:id] %>
+         <h2> Votre Profil</h2>
+         Bonjour <%=@seul.name%> <%=@seul.firstname%>, votre mail est: <%=@seul.email%><br><br>
+
+         <!-- <%= link_to  "Créer un message", root_path, class: "btn btn-primary", type:"button"%> -->
+         <a href="/messages/new" class="btn btn-primary" type="button">Créer un message</a>   
+
+         <a href="/message/mp" class="btn btn-info" type="button" name="message_p">Mes messages</a> <br><br>
+   
+    <%else%>
+    
+      <h2> Votre Profil</h2>
+         Bonjour <%=current_user.name%> <%=current_user.firstname%>, votre mail est: <%=current_user.email%><br><br>
+
+         <!-- <%= link_to  "Créer un message", root_path, class: "btn btn-primary", type:"button"%> -->
+         <a href="/messages/new" class="btn btn-primary" type="button">Créer un message</a>   
+
+         <a href="/message/mp" class="btn btn-info" type="button" name="message_p">Mes messages</a> <br><br>
+      
+
+         <%Message.where(user_id: current_user.id).each do |m|%>
+            Objet : <%= m.title%></br></br>
+
+            <%=m.content%><br><a href="/messages/<%=m.id%>/edit" class="btn btn-warning" type="button" name="">Mettre à jour</a> <a href="/messages/<%=m.id%>" class="btn btn-danger" data-method = "delete" type="button" name="">Suprimer</a> <br><br>
+         <%end%>
+    <%end%>
+    
+
+
+
+
+         <%
+=begin%>
+ <%if session[:user_id] %>
+             
+            <%for i in 0..session[:user_id].length-1%>
+
+                           Objet:  <%=session[:user_id][i]['title']%><br><br>
+                           
+                           
+                           Message:<br>
+                           <%= session[:user_id][i]['content']%><br><a href="/messages/<%=session[:user_id][i]['id']%>/edit" class="btn btn-warning" type="button" name="">Mettre à jour</a> <a href="" class="btn btn-danger" type="button" name="">Suprimer</a> <br><br>
+
+                  <%end%>
+         <%end%> 
+<%
+=end%>
+
+
+             
